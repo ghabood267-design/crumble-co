@@ -1,0 +1,38 @@
+{
+  "name": "Crumble & Co",
+  "short_name": "Crumble",
+  "start_url": "/crumble-co/app.html",
+  "display": "standalone",
+  "background_color": "#FEFDF9",
+  "theme_color": "#D4A574",
+  "scope": "/crumble-co/",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192?text=Crumble",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/512?text=Crumble",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/192?text=Crumble",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["food", "shopping"],
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/540x720?text=Screenshot1",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    }
+  ]
+}

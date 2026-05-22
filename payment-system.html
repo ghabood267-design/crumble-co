@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الدفع المتقدم - Crumble & Co</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #D4A574;
+            --primary-dark: #8B6F47;
+            --accent-color: #C97A8A;
+            --text-color: #3D3D3D;
+            --background-color: #FEFDF9;
+            --success-color: #4CAF50;
+            --danger-color: #f44336;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arabic Typesetting', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .payment-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(139, 111, 71, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .payment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 111, 71, 0.2);
+        }
+        .payment-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .payment-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        input, select, textarea {
+            padding: 0.8rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: #fff9f3;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 111, 71, 0.3);
+        }
+        .btn-secondary {
+            background: var(--accent-light);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .payment-method {
+            padding: 1rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-method:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+        .payment-method.active {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
+            color: var(--primary-dark);
+        }
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success-color);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(139, 111, 71, 0.1);
+        }
+        .summary h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--primary-light);
+        }
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        .summary-item.total {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .receipt {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px dashed var(--primary-color);
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .receipt-item {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .tab.active {
+            color: var(--primary-dark);
+            border-bottom-color: var(--primary-color);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💳 نظام الدفع المتقدم</h1>
+            <p>خيارات دفع آمنة وموثوقة للمتجر</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <!-- Payment Methods -->
+            <div class="payment-card">
+                <h3><i class="fas fa-credit-card"></i> طرق الدفع</h3>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" onclick="selectPaymentMethod('visa')">
+                        <i class="fab fa-cc-visa"></i>
+                        <p>بطاقة ائتمان</p>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('mastercard')">
+                        <i class="fab fa-cc-mastercard"></i>
+                        <p>ماستركارد</p>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('apple')">
+                        <i class="fab fa-apple"></i>
+                        <p>Apple Pay</p>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('google')">
+                        <i class="fab fa-google"></i>
+                        <p>Google Pay</p>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('paypal')">
+                        <i class="fab fa-paypal"></i>
+                        <p>PayPal</p>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('wallet')">
+                        <i class="fas fa-wallet"></i>
+                        <p>المحفظة الرقمية</p>
+                    </div>
+                </div>
+
+                <form class="payment-form" id="paymentForm">
+                    <div class="form-group">
+                        <label for="fullName">الاسم الكامل</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardNumber">رقم البطاقة</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">تاريخ الانتهاء</label>
+                            <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">الدولة</label>
+                        <select id="country" required>
+                            <option>-- اختر الدولة --</option>
+                            <option>الأردن</option>
+                            <option>السعودية</option>
+                            <option>الإمارات</option>
+                            <option>الكويت</option>
+                            <option>قطر</option>
+                            <option>البحرين</option>
+                            <option>عمّان</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">ملاحظات إضافية (اختياري)</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>دفع آمن 100% - مشفر بـ SSL</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-check-circle"></i> تأكيد الدفع
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="summary">
+                <h2>ملخص الطلب</h2>
+                
+                <div class="summary-item">
+                    <span>عدد الكوكيز (10 قطع)</span>
+                    <span>12.50د</span>
+                </div>
+                <div class="summary-item">
+                    <span>الكوكيز المخصصة (5 قطع)</span>
+                    <span>8.75د</span>
+                </div>
+                <div class="summary-item">
+                    <span>رسوم التسليم</span>
+                    <span>2.00د</span>
+                </div>
+                <div class="summary-item">
+                    <span>ضريبة القيمة المضافة (16%)</span>
+                    <span id="tax">4.08د</span>
+                </div>
+                
+                <div class="summary-item total">
+                    <span>المجموع النهائي:</span>
+                    <span id="total">27.33د</span>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--primary-light);">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">🎁 عروض خاصة</h3>
+                    <div class="summary-item" style="color: var(--success-color);">
+                        <span>كود خصم: WELCOME10</span>
+                        <span>-10%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color);"></i>
+            </div>
+            <div class="modal-header">تم الدفع بنجاح! ✅</div>
+            <div class="receipt">
+                <div class="receipt-item"><strong>رقم التتبع:</strong> <span id="trackingNo"></span></div>
+                <div class="receipt-item"><strong>البريد:</strong> <span id="receiptEmail"></span></div>
+                <div class="receipt-item"><strong>المبلغ:</strong> <span id="receiptAmount"></span></div>
+                <div class="receipt-item"><strong>التاريخ:</strong> <span id="receiptDate"></span></div>
+            </div>
+            <button class="btn btn-primary" onclick="closeModal()">العودة للمتجر</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPayment = 'visa';
+        const paymentForm = document.getElementById('paymentForm');
+
+        function selectPaymentMethod(method) {
+            selectedPayment = method;
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.target.closest('.payment-method').classList.add('active');
+        }
+
+        // Format card number
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            let formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = formattedValue;
+        });
+
+        // Format expiry date
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Only allow numbers in CVV
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        // Handle form submission
+        paymentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validation
+            if (!validateForm()) return;
+
+            // Generate tracking number
+            const trackingNo = 'CR' + Date.now() + Math.random().toString(36).substr(2, 9).toUpperCase();
+
+            // Save to localStorage
+            const transaction = {
+                trackingNo,
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                amount: '27.33د',
+                method: selectedPayment,
+                date: new Date().toLocaleString('ar-EG'),
+                status: 'مكتمل'
+            };
+
+            let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.push(transaction);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+
+            // Show success modal
+            document.getElementById('trackingNo').textContent = trackingNo;
+            document.getElementById('receiptEmail').textContent = transaction.email;
+            document.getElementById('receiptAmount').textContent = transaction.amount;
+            document.getElementById('receiptDate').textContent = transaction.date;
+            document.getElementById('successModal').classList.add('active');
+
+            // Reset form
+            paymentForm.reset();
+        });
+
+        function validateForm() {
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            if (cardNumber.length !== 16) {
+                alert('رقم البطاقة يجب أن يكون 16 رقم');
+                return false;
+            }
+            return true;
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
