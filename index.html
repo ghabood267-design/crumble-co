@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crumble & Co - فتات وحب</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>🍪 Crumble & Co</h1>
+                <p>فتات وحب.. حيث يلتقي الدفء بالفخامة</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#top-sellers">الأكثر طلباً</a></li>
+                <li><a href="#menu">المنيو</a></li>
+                <li><a href="#why-us">لماذا نحن</a></li>
+                <li><a href="#reviews">التقييمات</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Image -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800" alt="Crumble & Co Cookies" class="hero-image">
+            <div class="hero-text">
+                <h1>أحلى الكوكيز في المدينة</h1>
+                <p>فخامة البيج + دفء الريف + مكونات مختارة بعناية</p>
+                <button class="cta-button" onclick="document.getElementById('menu').scrollIntoView()">اطلب الآن</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Sellers Section -->
+    <section id="top-sellers" class="top-sellers">
+        <h2>الأكثر طلباً ⭐</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=300" alt="Classic Chocolate Chip">
+                <h3>كلاسيك تشوكليت تشيب</h3>
+                <p>العجينة التقليدية الزبدية المقرمشة محشوة بقطع الشوكولاتة البلجيكية الفاخرة</p>
+                <span class="price">1.25د - 12د</span>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1590080876412-fd92e67d0b45?w=300" alt="Red Velvet">
+                <h3>روز مخملي</h3>
+                <p>كوكيز المخمل الأحمر محشي بقطع الشوكولاتة البيضاء والجبن الكريمي</p>
+                <span class="price">1.25د - 12د</span>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1585080195519-c21a5b27f03b?w=300" alt="Brownie">
+                <h3>براوني فودج</h3>
+                <p>عجينة الكاكاو الغنية مع قطع الشوكولاتة الحليبية والبيضاء</p>
+                <span class="price">1.25د - 12د</span>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1599599810694-b5ac4dd64b73?w=300" alt="Caramel">
+                <h3>كراميل مملح</h3>
+                <p>زبدة طازة مع كراميل ذهبي سائل وملح البحر</p>
+                <span class="price">1.25د - 12د</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <h2>القائمة الكاملة 📋</h2>
+        
+        <div class="menu-category">
+            <h3>🍫 كوكيز الشوكولاتة</h3>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <span>كلاسيك تشوكليت تشيب</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>دبل تشوكليت فودج</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>براوني كوكيز</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h3>💗 كوكيز Red Velvet</h3>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <span>روز مخملي عادي</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>روز مع شوكولاتة تشيب</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>روز ساندويتش مع كريمة</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>روز مع الجوز</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h3>🍪 كوكيز أصلي</h3>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <span>أصلي كلاسيك</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>أصلي مع شوكولاتة تشيب</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+                <div class="menu-item">
+                    <span>أصلي مع كراميل مملح</span>
+                    <span class="price">1.25د - 12د</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h3>🎂 كعك كوكيز</h3>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <span>كعكة جنونية</span>
+                    <span class="price">خاص</span>
+                </div>
+                <div class="menu-item">
+                    <span>كعكة براوني</span>
+                    <span class="price">خاص</span>
+                </div>
+                <div class="menu-item">
+                    <span>كعكة أصلية</span>
+                    <span class="price">خاص</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customize Section -->
+    <section id="customize" class="customize">
+        <h2>خصص طلبك 🎨</h2>
+        <div class="customize-container">
+            <div class="occasion-card" onclick="selectOccasion('independence')">
+                <h3>🇯🇴 عيد الاستقلال</h3>
+                <p>كوكيز بتصميم خاص بألوان العلم الأردني</p>
+                <img src="https://images.unsplash.com/photo-1614707267537-b85faf00021b?w=300" alt="Independence Day">
+            </div>
+            <div class="occasion-card" onclick="selectOccasion('adha')">
+                <h3>🎊 عيد الأضحى</h3>
+                <p>كوكيز فاخر مع كتابة "مبروك" وتصاميم إسلامية</p>
+                <img src="https://images.unsplash.com/photo-1599599810694-b5ac4dd64b73?w=300" alt="Eid Al-Adha">
+            </div>
+        </div>
+        <div id="customizeMessage" style="display:none;" class="customize-message">
+            <p id="selectedOccasion"></p>
+            <button class="cta-button" onclick="orderCustomize()">طلب مخصص</button>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="why-us">
+        <h2>لماذا نحن مميزون ⭐</h2>
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-heart"></i>
+                <h3>مكونات مختارة</h3>
+                <p>نستخدم أفضل المكونات من أفضل العلامات التجارية</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-spa"></i>
+                <h3>طازة يومياً</h3>
+                <p>نخبز الكوكيز يومياً لضمان أقصى درجات الطازة</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-crown"></i>
+                <h3>فخامة في التفاصيل</h3>
+                <p>تصميم ريفي دافئ مع لمسات ذهبية فاخرة</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-truck"></i>
+                <h3>توصيل سريع</h3>
+                <p>نوصل طلبك في أسرع وقت ممكن</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-smile"></i>
+                <h3>خدمة عملاء متميزة</h3>
+                <p>فريقنا موجود لإجابة كل استفساراتك</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-leaf"></i>
+                <h3>مكونات طبيعية</h3>
+                <p>بدون مواد حافظة أو ألوان صناعية</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <h2>تقييمات العملاء 💬</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"أحلى كوكيز ذقت في حياتي! الجودة والطعم ممتاز جداً"</p>
+                <span class="reviewer">- أم محمد</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"التصميم الريفي والتغليف الفاخر جعل الهدية أجمل كتير"</p>
+                <span class="reviewer">- علي</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"الكوكيز طازة جداً والمكونات واضح أنها عالية الجودة"</p>
+                <span class="reviewer">- لمى</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"خدمة العملاء رائعة والتوصيل سريع جداً"</p>
+                <span class="reviewer">- فاطمة</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"أفضل هدية للمناسبات! كل من جربها بحب طعمها"</p>
+                <span class="reviewer">- سارة</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"الكوكيز المخصص لعيد الاستقلال كان رهيب! شكراً"</p>
+                <span class="reviewer">- محمود</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>اتصل بنا 📞</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>رقم التواصل</h3>
+                    <p><a href="tel:0780028321">0780028321</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>البريد الإلكتروني</h3>
+                    <p><a href="mailto:info@crumbleco.com">info@crumbleco.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>الموقع</h3>
+                    <p>عمّان، الأردن</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <h3>تابعنا على وسائل التواصل</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Crumble & Co. جميع الحقوق محفوظة</p>
+            <div class="footer-links">
+                <a href="#terms">الشروط والأحكام</a>
+                <a href="#privacy">سياسة الخصوصية</a>
+                <a href="#contact">اتصل بنا</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
